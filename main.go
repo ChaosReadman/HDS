@@ -53,7 +53,6 @@ func controll(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	retValStr := string(retVal)
 	log.Println("info: ResponsWriter Start")
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.Header().Set("Access-Control-Allow-Headers", "*")
@@ -61,7 +60,7 @@ func controll(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS")
 	w.WriteHeader(http.StatusOK)
 	log.Println("info: Fprint response start")
-	fmt.Fprint(w, retValStr)
+	w.Write(retVal)
 	log.Println("info: Fprint response end")
 	log.Println("info: ResponsWriter End")
 }
@@ -71,7 +70,7 @@ var pwd string
 func main() {
 	pwd, _ = os.Getwd()
 	colog.SetDefaultLevel(colog.LDebug)
-	colog.SetMinLevel(colog.LWarning)
+	colog.SetMinLevel(colog.LDebug)
 	colog.SetFormatter(&colog.StdFormatter{
 		Colors: true,
 		Flag:   log.Ldate | log.Ltime | log.Lshortfile,
@@ -80,7 +79,25 @@ func main() {
 
 	log.Println("info: Server Start....")
 	http.HandleFunc("/", controll)
-	http.ListenAndServe(":5000", nil)
+
+	err := http.ListenAndServeTLS(":8443", "auth/usercert.pem", "auth/userkey.pem", nil)
+	if err != nil {
+		log.Printf("error : %s", err)
+	}
+	log.Printf("info: Server Started")
 }
 
-//curl -i POST '127.0.0.1:5000/recipe/newpage' -H 'Content-Type: application/json' -H  -d '{"title":"タイトル７","page":"ぺーじ"}'
+// PS C:\tmp\work\source\HDS> curl.exe --insecure -i POST 'https://localhost:8443/regist?aaa=1' -H 'Content-Type: application/json' -d '{"title":"タイトル７","page":"ぺーじ"}'
+// curl: (6) Could not resolve host: POST
+// HTTP/1.1 200 OK
+// Access-Control-Allow-Headers: *
+// Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS
+// Access-Control-Allow-Origin: *
+// Content-Type: application/json; charset=utf-8
+// Date: Thu, 30 Jun 2022 12:56:44 GMT
+// Content-Length: 53
+
+// {
+//     "result": "OK",
+//     "detail": "Registered"
+// }
