@@ -35,3 +35,19 @@ openssl pkcs12 -in test.p12 -clcerts -nokeys -out usercert.pem
 openssl pkcs12 -in test.p12 -nocerts -out userkey.pem -nodes  
 
 出来たファイルをauthに納めてある
+
+## 実行方法
+HDSを起動するだけ
+
+## 確認補法
++ コマンドプロンプトから  
+curl.exe --insecure -i POST 'https://localhost:8443/regist?aaa=1' -H 'Content-Type: application/json' -d '{"title":"タイトル７","page":"ぺーじ"}'
+
++ ブラウザから  
+https://localhost:8443/etc  
+https://localhost:8443/regist  
+
+URL欄に以下を記述（認証を信頼するか聞かれるのでYESで進める）  
+それぞれのフォルダに納められているretVal.jsonの値が表示されるはず  
+
+以上
