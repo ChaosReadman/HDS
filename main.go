@@ -115,7 +115,7 @@ func main() {
 		Handler:   mux,
 		TLSConfig: cfg,
 	}
-	ListenErr := srv.ListenAndServeTLS("auth/server-cert.pem", "auth/server-key.pem")
+	ListenErr := srv.ListenAndServeTLS("auth/usercert.pem", "auth/userkey.pem")
 	if ListenErr != nil {
 		log.Printf("error : %s", ListenErr)
 	}
