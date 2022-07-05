@@ -1,15 +1,14 @@
 {
-    "XmlMsg": {
-      "MessageHeader": {
-        "ArbitraryFileIdentifier": "TEST_CASE01",
-        "SegmentOfResult": "1",
-        "CharacterCodeIdentifier": "0"
-      },
-      "MessageBody": {
-        "ProcessingResultStatus": "1",
-        "PrescriptionId": "e789ef9e-ea3b-47ba-aa4a-86fd7ca511bf",
-        "AccessCode": "111835"
-      }
+  "XmlMsg": {
+    "MessageHeader": {
+      "ArbitraryFileIdentifier": "TEST_CASE01",
+      "SegmentOfResult": "1",
+      "CharacterCodeIdentifier": "0"
+    },
+    "MessageBody": {
+      "ProcessingResultStatus": "1",
+      "PrescriptionId": "e789ef9e-ea3b-47ba-aa4a-86fd7ca511bf",
+      "AccessCode": "111835"
     }
   }
-  
+}
