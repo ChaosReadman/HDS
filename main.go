@@ -100,39 +100,23 @@ func main() {
 		cert.Certificate = [][]byte{cer.Raw}
 	*/
 
-	cer, err := tls.LoadX509KeyPair("auth/usercert.pem", "auth/userkey.pem")
-	if err != nil {
-		log.Println(err)
-		return
-	}
-
 	// ハンドラの設定
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", controll)
 
 	cfg := &tls.Config{
-		MinVersion:               tls.VersionTLS12,
-		CurvePreferences:         []tls.CurveID{tls.CurveP521, tls.CurveP384, tls.CurveP256},
-		PreferServerCipherSuites: true,
-		CipherSuites: []uint16{
-			tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
-			tls.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
-			tls.TLS_RSA_WITH_AES_256_GCM_SHA384,
-			tls.TLS_RSA_WITH_AES_256_CBC_SHA,
-		},
-		Certificates: []tls.Certificate{cer},
+		ClientAuth: tls.RequestClientCert,
 	}
 
 	log.Println("info: Server Start....")
 
 	srv := &http.Server{
-		Addr:         ":443",
-		Handler:      mux,
-		TLSConfig:    cfg,
-		TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler), 0),
+		Addr:      ":5000",
+		Handler:   mux,
+		TLSConfig: cfg,
 	}
-	ListenErr := srv.ListenAndServeTLS()
-	if err != nil {
+	ListenErr := srv.ListenAndServeTLS("auth/server-cert.pem", "auth/server-key.pem")
+	if ListenErr != nil {
 		log.Printf("error : %s", ListenErr)
 	}
 	log.Printf("info: Server Started")

@@ -1,0 +1,9 @@
+{
+    "httpStatus": "OK",
+    "status": "ok",
+    "msg": "no error",
+    "accessToken": "aiueo",
+    "refreshToken": "kakikukeko",
+    "idToken": "idToken",
+    "linksysCharCd": "01"
+}
