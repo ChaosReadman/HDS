@@ -80,26 +80,6 @@ func main() {
 	})
 	colog.Register()
 
-	/*
-		// p12を読む
-		// privとkeyを pkcs keystore からデコード
-		// デコードできない・・・
-		p12_data, err := os.ReadFile("auth/test.p12")
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		pkey, cer, err := pkcs12.Decode(p12_data, "abcdefg")
-		if err != nil {
-			log.Println(err)
-			return
-		}
-		// 認証情報をtls構造体にセット
-		cert := tls.Certificate{}
-		cert.PrivateKey = pkey
-		cert.Certificate = [][]byte{cer.Raw}
-	*/
-
 	// ハンドラの設定
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", controll)
