@@ -1,0 +1,60 @@
+{
+    "XmlMsg": {
+        "MessageHeader": {
+            "MedicalInstitutionCode": "1311234567",
+            "ArbitraryFileIdentifier": "XXXXXXX",
+            "CharacterCodeIdentifier": "0",
+            "SegmentOfResult": "1"
+        },
+        "MessageBody": {
+            "ProcessingResultStatus": "1",
+            "CheckResultBody": {
+                "InsurerNumber": "06000001",
+                "InsuredIdentificationNumber": "１００１",
+                "CheckDate": "20220620",
+                "TargetDate": "20220614",
+                "TargetMedicalInstitutionName": "B病院",
+                "CheckResultList": {
+                    "CheckResult": [
+                        {
+                            "MessageId": "1",
+                            "MessageCategory": "成分重複",
+                            "PharmaceuticalsIngredientName": "バラシクロビル塩酸塩水和物－内用",
+                            "Message": "同一投与経路で成分が重複しています",
+                            "TargetPharmaceuticalCodeType": "4",
+                            "TargetPharmaceuticalCode": "6250019D1020",
+                            "TargetPharmaceuticalName": "バルトレックス顆粒５０％",
+                            "TargetDispensingQuantity": "999",
+                            "TargetUsage": "用法名称０１",
+                            "PastDate": "20220520",
+                            "PastPharmaceuticalCodeType": "4",
+                            "PastPharmaceuticalCode": "6250019F1020",
+                            "PastPharmaceuticalName": "バルトレックス錠５００　５００ｍｇ",
+                            "PastMedicalInstitutionName": "A病院",
+                            "PastDispensingQuantity": "1000",
+                            "PastUsage": "1日2回食間服用"
+                        },
+                        {
+                            "MessageId": "2",
+                            "MessageCategory": "併用禁忌",
+                            "PharmaceuticalsIngredientName": "ＭＳコンチン錠６０ｍｇ",
+                            "Message": "本剤の鎮痛作用を減弱させることがある。また、退薬症候を起こすことがある。",
+                            "TargetPharmaceuticalCodeType": "4",
+                            "TargetPharmaceuticalCode": "8114004G3020",
+                            "TargetPharmaceuticalName": "ＭＳコンチン錠６０ｍｇ",
+                            "TargetDispensingQuantity": "999",
+                            "TargetUsage": "用法名称０１",
+                            "PastDate": "20220520",
+                            "PastPharmaceuticalCodeType": "4",
+                            "PastPharmaceuticalCode": "1190025F1023",
+                            "PastPharmaceuticalName": "セリンクロ錠１０ｍｇ",
+                            "PastMedicalInstitutionName": "A病院",
+                            "PastDispensingQuantity": "1000",
+                            "PastUsage": "1日2回食間服用"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

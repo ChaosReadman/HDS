@@ -78,9 +78,9 @@ func main() {
 	colog.Register()
 
 	log.Println("info: Server Start....")
-	http.HandleFunc("/", controll)
 
-	err := http.ListenAndServeTLS(":8443", "auth/clientcert.pem", "auth/clientkey.pem", nil)
+	http.HandleFunc("/", controll)
+	err := http.ListenAndServe(":8443", nil)
 	if err != nil {
 		log.Printf("error : %s", err)
 	}
