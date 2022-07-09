@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/http/httputil"
 	"os"
 	"strings"
 
@@ -34,10 +35,11 @@ func controll(w http.ResponseWriter, req *http.Request) {
 	urlPath := pwd + "/serverRoot" + strings.ToLower(req.URL.Path) + "/retVal.json"
 
 	// For Debug
-	for k, v := range req.Header {
-		log.Printf("debug: [header]" + k)
-		log.Println("debug: " + strings.Join(v, ","))
+	b, err := httputil.DumpRequest(req, true)
+	if err != nil {
+		log.Fatalln(err)
 	}
+	log.Println("debug: " + string(b))
 
 	// Open and Read retVal.json File
 	log.Println(("debug: Read retVal.json from " + urlPath))
